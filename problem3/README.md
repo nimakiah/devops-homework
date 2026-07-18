@@ -14,23 +14,32 @@ A simple Flask HTTP web server containerized using Docker.
 ### 1. Build Docker Image
 ```bash
 docker build -t status-server:v1 .
+```
 
 ### 2. Run Container and Publish Port
+```bash
 docker run -d -p 8000:8000 --name my-status-app status-server:v1
+```
 
 ### 3. Test the API
 ## Check initial GET status:
+```bash
 curl -X GET http://localhost:8000/api/v1/status
+```
 # Output: {"status":"OK"}
 
 ## Update status with POST:
+```bash
 curl -X POST http://localhost:8000/api/v1/status \
      -H "Content-Type: application/json" \
      -d '{"status": "not OK"}'
+```
 # Output: {"status":"not OK"}
 
 ## Verify updated GET status:
+```bash
 curl -X GET http://localhost:8000/api/v1/status
+```
 # Output: {"status":"not OK"}
 
 
